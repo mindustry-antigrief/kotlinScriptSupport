@@ -1,0 +1,17 @@
+plugins {
+    id 'java'
+}
+
+repositories{
+    mavenCentral()
+}
+
+dependencies{
+    implementation "org.jetbrains.kotlin:kotlin-scripting-jsr223:2.0.10"
+}
+
+jar{
+    archiveFileName = "fooKotlinScriptSupport.jar"
+    from configurations.runtimeClasspath.collect{ it.isDirectory() ? it : zipTree(it) }
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+}
